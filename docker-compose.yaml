@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  emqx:
+    image: "docker.io/emqx/emqx-enterprise:${EMQX_EE_VERSION}"
+    restart: always
+    ports:
+      - 1883:1883
+      - 8883:8883
+      - 18083:18083
+    volumes:
+      - "./run/data:/opt/emqx/data"
+      - "./run/log:/opt/emqx/log"
+      - "./config/emqx-local.conf:/opt/emqx/etc/emqx-enterprise.conf"
+    environment:
+      EMQX_NAME: "emqx"
+      EMQX_HOST: "emqx.dev"
+      EMQX_NODE__COOKIE: "${EMQX_ERLDIST_COOKIE}"
+      EMQX_DASHBOARD__DEFAULT_PASSWORD: "${EMQX_ADMIN_PASSWORD}"
+      EMQX_LOG__CONSOLE_HANDLER__LEVEL: "debug"
+    networks:
+      emqx-bridge:
+        aliases: [emqx.dev]
+
+networks:
+  emqx-bridge:
+    driver: bridge
+    name: emqx-bridge
