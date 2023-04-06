@@ -17,7 +17,8 @@ def transfer(client_id, file_id, file_name, **kwargs):
     hash.update(data)
     checksum = hash.hexdigest()
 
-    name = kwargs.get('file_name', file_name)
+    base_name = file_name.split('/')[-1]
+    name = kwargs.get('file_name', base_name)
     meta = {
         "name": name,
         "size": len(data),
