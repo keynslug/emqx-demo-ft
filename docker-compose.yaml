@@ -26,3 +26,9 @@ networks:
   emqx-bridge:
     driver: bridge
     name: emqx-bridge
+    enable_ipv6: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.42.42.0/24
+          gateway: 172.42.42.1
