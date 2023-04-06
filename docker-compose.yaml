@@ -17,7 +17,7 @@ services:
       EMQX_HOST: "emqx.dev"
       EMQX_NODE__COOKIE: "${EMQX_ERLDIST_COOKIE}"
       EMQX_DASHBOARD__DEFAULT_PASSWORD: "${EMQX_ADMIN_PASSWORD}"
-      EMQX_LOG__CONSOLE_HANDLER__LEVEL: "debug"
+      EMQX_LOG__CONSOLE_HANDLER__LEVEL: "info"
     networks:
       emqx-bridge:
         aliases: [emqx.dev]
